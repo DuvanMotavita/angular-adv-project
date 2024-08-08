@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "node_modules/@mdi/font/css/materialdesignicons.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -92,5 +93,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "1fdb8448-262a-4035-b68e-10eecbdf8fa0"
   }
 }
