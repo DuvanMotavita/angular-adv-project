@@ -2,11 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     loadComponent: () => import('./pages/pages.component'),
     children: [
       {
-        path: 'dashboard',
+        path: '',
         loadComponent: () => import('./pages/dashboard/dashboard.component'),
       },
       {
@@ -16,11 +16,6 @@ export const routes: Routes = [
       {
         path: 'progress',
         loadComponent: () => import('./pages/progress/progress.component'),
-      },
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full',
       },
     ],
   },
@@ -33,7 +28,11 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./auth/register/register.component'),
   },
-
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full',
+  },
   {
     path: '**',
     loadComponent: () => import('./pages/nopagefound/nopagefound.component'),
