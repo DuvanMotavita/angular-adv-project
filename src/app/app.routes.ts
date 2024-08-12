@@ -17,6 +17,11 @@ export const routes: Routes = [
         path: 'progress',
         loadComponent: () => import('./pages/progress/progress.component'),
       },
+      {
+        path: 'account-settings',
+        loadComponent: () =>
+          import('./pages/account-settings/account-settings.component'),
+      },
     ],
   },
 

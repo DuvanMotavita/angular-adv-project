@@ -10,43 +10,65 @@
         <li class="user-profile">
           <a
             class="has-arrow waves-effect waves-dark"
-            href="#"
+            (click)="profileExpanded()"
             aria-expanded="false"
             ><img src="images/users/profile.png" alt="user" /><span
               class="hide-menu"
               >Steave Jobs
             </span></a
           >
-          <ul aria-expanded="false" class="collapse">
+          <ul
+            aria-expanded="false"
+            [ngClass]="{
+              expanded: isProfileExpanded,
+              collapse: !isProfileExpanded
+            }"
+          >
             <li><a href="javascript:void()">My Profile </a></li>
             <li><a href="javascript:void()">My Balance</a></li>
             <li><a href="javascript:void()">Inbox</a></li>
-            <li><a href="javascript:void()">Account Setting</a></li>
-            <li><a href="javascript:void()">Logout</a></li>
+            <li>
+              <a
+                routerLink="account-settings"
+                routerLinkActive="router-link-active"
+                >Account Setting</a
+              >
+            </li>
+            <li><a routerLink="/login">Logout</a></li>
           </ul>
         </li>
         <li class="nav-devider"></li>
         <li class="nav-small-cap">PERSONAL</li>
+        @for (item of menuItems; track $index) {
         <li>
           <a
             class="has-arrow waves-effect waves-dark"
-            href="#"
+            (click)="dashboardExpanded()"
             aria-expanded="false"
             ><i class="mdi mdi-gauge"></i
             ><span class="hide-menu"
-              >Dashboard
-              <span class="label label-rouded label-themecolor pull-right"
-                >4</span
-              ></span
+              >{{ item.title }}
+              <span class="label label-rouded label-themecolor pull-right">{{
+                item.submenu.length
+              }}</span></span
             ></a
           >
-          <ul aria-expanded="false" class="collapse">
-            <li><a href="index.html">Minimal </a></li>
-            <li><a href="index2.html">Analytical</a></li>
-            <li><a href="index3.html">Demographical</a></li>
-            <li><a href="index4.html">Modern</a></li>
+          <ul
+            aria-expanded="false"
+            [ngClass]="{
+              expanded: isDashboardExpanded,
+              collapse: !isDashboardExpanded
+            }"
+          >
+            @for (subItem of item.submenu; track $index) {
+            <li>
+              <a [routerLink]="subItem.url"> {{ subItem.title }} </a>
+            </li>
+            }
           </ul>
         </li>
+        }
+
         <!-- <li>
           <a
             class="has-arrow waves-effect waves-dark"
