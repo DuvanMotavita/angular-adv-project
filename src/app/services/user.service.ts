@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment.development';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { LoginForm } from '../interfaces/login.interface';
 import { Router } from '@angular/router';
+import { User } from '../models/users.model';
 declare const google: any;
 const base_url = environment.base_url;
 
@@ -15,8 +16,16 @@ export class UserService {
   //Injections
   private http: HttpClient = inject(HttpClient);
   private router: Router = inject(Router);
+  public user: User | undefined;
 
   constructor() {}
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+  get uid(): string {
+    return this.user?.uid || '';
+  }
 
   logout(): void {
     localStorage.removeItem('token');
@@ -27,18 +36,20 @@ export class UserService {
   }
 
   validateToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
     return this.http
       .get(`${base_url}/login/renew`, {
         headers: {
-          'x-token': token,
+          'x-token': this.token,
         },
       })
       .pipe(
         tap((resp: any) => {
+          const { email, google, name, role, img = '', uid } = resp.user;
+          this.user = new User(name, email, '', img, google, role, uid);
           localStorage.setItem('token', resp.token);
+          return true;
         }),
-        map((resp) => true),
+        // map((resp) => true),
         catchError((error) => of(false))
       );
   }
@@ -56,6 +67,19 @@ export class UserService {
         localStorage.setItem('token', resp.token);
       })
     );
+  }
+
+  updateUser(data: {
+    email: string;
+    name: string;
+    role: string;
+  }): Observable<Object> {
+    data = { ...data, role: this.user?.role! };
+    return this.http.put(`${base_url}/users/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token,
+      },
+    });
   }
 
   loginGoogle(token: string): Observable<Object> {

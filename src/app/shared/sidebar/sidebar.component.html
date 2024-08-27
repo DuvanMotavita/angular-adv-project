@@ -12,9 +12,8 @@
             class="has-arrow waves-effect waves-dark"
             (click)="profileExpanded()"
             aria-expanded="false"
-            ><img src="images/users/profile.png" alt="user" /><span
-              class="hide-menu"
-              >Steave Jobs
+            ><img [src]="user?.imageUrl" alt="user" /><span class="hide-menu"
+              >{{ user?.name }}
             </span></a
           >
           <ul
@@ -24,7 +23,11 @@
               collapse: !isProfileExpanded
             }"
           >
-            <li><a href="javascript:void()">My Profile </a></li>
+            <li>
+              <a routerLink="./profile" routerLinkActive="active"
+                >My Profile
+              </a>
+            </li>
             <li><a href="javascript:void()">My Balance</a></li>
             <li><a href="javascript:void()">Inbox</a></li>
             <li>

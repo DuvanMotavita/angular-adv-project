@@ -24,6 +24,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/account-settings/account-settings.component'),
       },
+      {
+        path: 'profile',
+        loadComponent: () => import('./pages/profile/profile.component'),
+        data: { title: 'User Profile' },
+      },
     ],
   },
 
