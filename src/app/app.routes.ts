@@ -8,7 +8,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: '',
+        path: 'main',
         loadComponent: () => import('./pages/dashboard/dashboard.component'),
       },
       {
@@ -29,6 +29,18 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/profile/profile.component'),
         data: { title: 'User Profile' },
       },
+      ///Maintaining
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./pages/maintaining/users/users.component'),
+        data: { title: 'Users of the app' },
+      },
+      {
+        path: '',
+        redirectTo: '/dashboard/main',
+        pathMatch: 'full',
+      },
     ],
   },
 
@@ -42,7 +54,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/dashboard/main',
     pathMatch: 'full',
   },
   {

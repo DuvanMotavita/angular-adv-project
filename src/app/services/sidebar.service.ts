@@ -9,9 +9,18 @@ export class SidebarService {
       title: 'Dashboard',
       icon: 'mdi mdi-gauge',
       submenu: [
-        { title: 'Main', url: '' },
+        { title: 'Main', url: 'main' },
         { title: 'Progress Bar', url: 'progress' },
         { title: 'Charts', url: 'grafica1' },
+      ],
+    },
+    {
+      title: 'Support',
+      icon: 'mdi mdi-folder-lock-open',
+      submenu: [
+        { title: 'Users', url: 'users' },
+        { title: 'Hospitals', url: 'hospitals' },
+        { title: 'Medics', url: 'medics' },
       ],
     },
   ];

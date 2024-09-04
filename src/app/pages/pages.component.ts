@@ -4,6 +4,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { BreadcrumpsComponent } from '../shared/breadcrumps/breadcrumps.component';
 import { RouterModule } from '@angular/router';
 import { SettingsService } from '../services/settings.service';
+import { ModalImageComponent } from '../components/modal-image/modal-image.component';
 
 declare function customInitFunctions(): void;
 @Component({
@@ -14,6 +15,7 @@ declare function customInitFunctions(): void;
     SidebarComponent,
     BreadcrumpsComponent,
     RouterModule,
+    ModalImageComponent,
   ],
   templateUrl: './pages.component.html',
   styles: ``,
