@@ -10,19 +10,23 @@ export const routes: Routes = [
       {
         path: 'main',
         loadComponent: () => import('./pages/dashboard/dashboard.component'),
+        data: { title: 'Dashboard' },
       },
       {
         path: 'grafica1',
         loadComponent: () => import('./pages/grafica1/grafica1.component'),
+        data: { title: 'Graphics' },
       },
       {
         path: 'progress',
         loadComponent: () => import('./pages/progress/progress.component'),
+        data: { title: 'Progress Bar' },
       },
       {
         path: 'account-settings',
         loadComponent: () =>
           import('./pages/account-settings/account-settings.component'),
+        data: { title: 'Account Settings' },
       },
       {
         path: 'profile',
@@ -34,7 +38,25 @@ export const routes: Routes = [
         path: 'users',
         loadComponent: () =>
           import('./pages/maintaining/users/users.component'),
-        data: { title: 'Users of the app' },
+        data: { title: 'Users Maintaining' },
+      },
+      {
+        path: 'hospitals',
+        loadComponent: () =>
+          import('./pages/maintaining/hospitals/hospitals.component'),
+        data: { title: 'Hospitals Maintaining' },
+      },
+      {
+        path: 'medics',
+        loadComponent: () =>
+          import('./pages/maintaining/medics/medics.component'),
+        data: { title: 'Medics Maintaining' },
+      },
+      {
+        path: 'medic/:id',
+        loadComponent: () =>
+          import('./pages/maintaining/medics/medic.component'),
+        data: { title: 'Medic' },
       },
       {
         path: '',

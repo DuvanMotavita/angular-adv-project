@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment.development';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { User } from '../models/users.model';
+import { Hospital } from '../models/hospital.model';
+import { Medic } from '../models/medic.model';
 
 const base_url = environment.base_url;
 
@@ -40,6 +42,12 @@ export class SearchService {
         )
     );
   }
+  private transformHospitals(results: any[]): Hospital[] {
+    return results;
+  }
+  private transformMedics(results: any[]): Medic[] {
+    return results;
+  }
 
   public search(
     type: 'users' | 'medics' | 'hospitals',
@@ -51,6 +59,10 @@ export class SearchService {
         switch (type) {
           case 'users':
             return this.transformUsers(resp.results);
+          case 'hospitals':
+            return this.transformHospitals(resp.results);
+          case 'medics':
+            return this.transformMedics(resp.results);
           default:
             return [];
         }

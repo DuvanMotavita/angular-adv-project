@@ -62,7 +62,11 @@
           >
             @for (subItem of item.submenu; track $index) {
             <li>
-              <a [routerLink]="subItem.url" routerLinkActive="active">
+              <a
+                [routerLink]="subItem.url"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 {{ subItem.title }}
               </a>
             </li>

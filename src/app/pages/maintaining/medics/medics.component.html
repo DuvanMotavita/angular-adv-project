@@ -1,0 +1,99 @@
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search medic...."
+          #txtTerm
+          (keyup)="search(txtTerm.value)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+@if (loading) {
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Loading....</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Please stand by...</p>
+    </div>
+  </div>
+</div>
+}@else {
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-8">
+            <h4 class="card-title">Medics - ({{ medics.length }})</h4>
+            <h6 class="card-subtitle">Medics registered on this app</h6>
+          </div>
+          <div class="col">
+            <div class="text-right">
+              <a class="btn btn-primary" routerLink="/dashboard/medic/new">
+                <i class="fa fa-hospital-o"></i>
+                Create Medic
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="w100">Avatar</th>
+                <th>Name</th>
+                <th class="w100 text-nowrap">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (medic of medics; track $index) {
+              <tr>
+                <td class="text-center">
+                  <img
+                    [src]="medic.img! | image : 'medics'"
+                    [alt]="medic.name"
+                    class="w100 cursor"
+                    (click)="openModal(medic)"
+                  />
+                </td>
+
+                <td>
+                  {{ medic.name }}
+                </td>
+                <td class="text-nowrap text-center">
+                  <a
+                    [routerLink]="['/dashboard/medic', medic._id]"
+                    routerLinkActive="router-link-active"
+                    data-toggle="tooltip"
+                    data-original-title="Edit"
+                  >
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    data-toggle="tooltip"
+                    data-original-title="Close"
+                    (click)="deleteMedic(medic)"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <!-- <button class="btn btn-secondary">Next</button>
+          &nbsp;
+          <button class="btn btn-secondary">Back</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+}
