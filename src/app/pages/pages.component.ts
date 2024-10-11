@@ -5,6 +5,7 @@ import { BreadcrumpsComponent } from '../shared/breadcrumps/breadcrumps.componen
 import { RouterModule } from '@angular/router';
 import { SettingsService } from '../services/settings.service';
 import { ModalImageComponent } from '../components/modal-image/modal-image.component';
+import { SidebarService } from '../services/sidebar.service';
 
 declare function customInitFunctions(): void;
 @Component({
@@ -22,8 +23,10 @@ declare function customInitFunctions(): void;
 })
 export default class PagesComponent implements OnInit {
   private _settingsServie: SettingsService = inject(SettingsService);
+  private _sidebarService: SidebarService = inject(SidebarService);
 
   ngOnInit(): void {
     customInitFunctions();
+    this._sidebarService.chargeMenu();
   }
 }

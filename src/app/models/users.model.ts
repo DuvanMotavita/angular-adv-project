@@ -9,7 +9,7 @@ export class User {
     public password?: string,
     public img?: string,
     public google?: boolean,
-    public role?: string,
+    public role?: 'ADMIN_ROLE' | 'USER_ROLE',
     public uid?: string
   ) {}
   ///upload/users/66c50ac8df3f27eb931df322

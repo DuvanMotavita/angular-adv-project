@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,11 @@ export const routes: Routes = [
         data: { title: 'Account Settings' },
       },
       {
+        path: 'search/:term',
+        loadComponent: () => import('./pages/search/search.component'),
+        data: { title: 'Search' },
+      },
+      {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile.component'),
         data: { title: 'User Profile' },
@@ -39,6 +45,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/maintaining/users/users.component'),
         data: { title: 'Users Maintaining' },
+        canActivate: [adminGuard],
       },
       {
         path: 'hospitals',

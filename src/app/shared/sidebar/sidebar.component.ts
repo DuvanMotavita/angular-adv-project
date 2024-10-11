@@ -13,15 +13,15 @@ import { User } from '../../models/users.model';
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[] | undefined;
-  private _sidebarService: SidebarService = inject(SidebarService);
+  // menuItems: any[] | undefined;
+  public _sidebarService: SidebarService = inject(SidebarService);
   private _userService: UserService = inject(UserService);
   public isProfileExpanded: boolean = false;
   public isDashboardExpanded: boolean = false;
   public user: User | undefined;
 
   ngOnInit(): void {
-    this.menuItems = this._sidebarService.menu;
+    // this.menuItems = this._sidebarService.menu;
     this.user = this._userService.user;
   }
 

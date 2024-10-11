@@ -49,6 +49,11 @@ export class SearchService {
     return results;
   }
 
+  public globalSearch(term: string) {
+    const url: string = `${base_url}/all/${term}`;
+    return this.http.get<any[]>(url, this.headers);
+  }
+
   public search(
     type: 'users' | 'medics' | 'hospitals',
     term: string

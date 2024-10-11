@@ -1,0 +1,117 @@
+<div class="row animated fadeIn fast">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Users</h3>
+        @if(users.length === 0) {
+        <div class="alert alert-info">
+          <p class="mb-0">Not match results</p>
+        </div>
+        }@else {
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of users; track $index) {
+              <tr class="animated fadeIn fast">
+                <td>
+                  <img
+                    [src]="user.img! | image : 'users'"
+                    alt="users image"
+                    class="w75"
+                  />
+                </td>
+                <td>{{ user.name }}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Hospitals</h3>
+        @if (hospitals.length === 0) {
+        <div class="alert alert-info">
+          <p class="mb-0">Not match results</p>
+        </div>
+        }@else {
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (hospital of hospitals; track $index) {
+              <tr class="animated fadeIn fast">
+                <td>
+                  <img
+                    [src]="hospital.img! | image : 'hospitals'"
+                    alt="users image"
+                    class="w75"
+                  />
+                </td>
+                <td>{{ hospital.name }}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Medics</h3>
+        @if (medics.length === 0) {
+        <div class="alert alert-info">
+          <p class="mb-0">Not match results</p>
+        </div>
+        }@else {
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (medic of medics; track $index) {
+              <tr class="animated fadeIn fast">
+                <td>
+                  <img
+                    [src]="medic.img! | image : 'medics'"
+                    alt="users image"
+                    class="w75"
+                  />
+                </td>
+                <td>
+                  <a [routerLink]="['/dashboard/medic', medic._id]">{{
+                    medic.name
+                  }}</a>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
